@@ -1,7 +1,0 @@
-devops
-testing
-java
-python
-ai/ml
-hr
-sap
