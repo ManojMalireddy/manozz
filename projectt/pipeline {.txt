@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    tools {
+        maven 'maven'
+        jdk 'java17'
+    }
+    stages {
+        stage ('checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/ManojMalireddy/jenkinzz.git'
+            }
+        }
+        stage ('build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage ('publish to nexus') {
+            steps {
+                sh 'mvn deploy'
+            }
+        }
+        stage ('post-build') {
+            steps {
+                echo "build and publish completed successfully"
+            }
+        }
+    }
+}
